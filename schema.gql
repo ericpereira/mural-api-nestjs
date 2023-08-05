@@ -12,8 +12,9 @@ type User {
   username: String!
 }
 
-type SignInResponse {
+type LogInResponse {
   access_token: String!
+  user: User!
 }
 
 type Query {
@@ -25,7 +26,7 @@ type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: Int!): User!
-  signIn(authUserInput: AuthUserInput!): SignInResponse!
+  login(authUserInput: AuthUserInput!): LogInResponse!
 }
 
 input CreateUserInput {
@@ -62,5 +63,5 @@ input AuthUserInput {
   username: String!
 
   """Valid password"""
-  pass: String!
+  password: String!
 }

@@ -1,4 +1,5 @@
 import { InputType, Field, ObjectType } from '@nestjs/graphql';
+import { User } from '../../users/entities/user.entity';
 
 @InputType()
 export class AuthUserInput {
@@ -6,11 +7,14 @@ export class AuthUserInput {
   username: string;
 
   @Field(() => String, { description: 'Valid password' })
-  pass: string;
+  password: string;
 }
 
 @ObjectType()
-export class SignInResponse {
+export class LogInResponse {
     @Field()
     access_token: string;
+
+    @Field(() => User)
+    user: User;
 }
