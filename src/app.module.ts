@@ -8,6 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { upperDirectiveTransformer } from './common/directives/upper-case.directive';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
+import { PostsModule } from './posts/posts.module';
 
 
 @Module({
@@ -23,7 +24,7 @@ import { AuthModule } from './auth/auth.module';
         synchronize: true,
         autoLoadEntities: true
     }),
-    UsersModule,
+    
     GraphQLModule.forRoot<ApolloDriverConfig>({
         driver: ApolloDriver,
         autoSchemaFile: 'schema.gql',
@@ -39,6 +40,8 @@ import { AuthModule } from './auth/auth.module';
         // },
     }),
     AuthModule,
+    UsersModule,
+    PostsModule,
   ],
 })
 export class AppModule {}
