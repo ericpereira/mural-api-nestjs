@@ -19,13 +19,13 @@ type LogInResponse {
 
 type Post {
   id: ID!
-  title: String!
+  title: String
   description: String!
   isFixed: Boolean!
   userId: ID!
   user: User!
-  referredUserId: ID!
-  referredUser: User!
+  referredUserId: ID
+  referredUser: User
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -39,9 +39,13 @@ type Query {
   users: [User!]!
   user(username: String!): User!
   findAllPosts(findAllPostsArgs: FindAllPostsArgs!): [Post!]!
+  search(findAllPostsArgs: FindAllPostsArgs!): [Post!]!
 }
 
 input FindAllPostsArgs {
+  """Termo buscado"""
+  term: String
+
   """Se os posts retornados são somente os posts fixos"""
   isFixed: Boolean
 
@@ -121,10 +125,10 @@ input CreatePostInput {
 
 input UpdatePostInput {
   """Título do post"""
-  title: String!
+  title: String
 
   """Conteúdo do post"""
-  description: String!
+  description: String
   id: Int!
-  isFixed: Boolean!
+  isFixed: Boolean
 }

@@ -9,7 +9,7 @@ export class Post {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Field(type => String)
+    @Field(type => String, { nullable: true })
     @Column({ nullable: true })
     title: string;
 
@@ -30,12 +30,12 @@ export class Post {
     @JoinColumn({ name: 'userId' })
     user: User;
 
-    @Field(type => ID)
+    @Field(type => ID, { nullable: true })
     @Column({ nullable: true })
     referredUserId: number //usuário que recebeu a postagem em seu mural
 
-    @Field(type => User)
-    @ManyToOne(type => User, { eager: true })
+    @Field(type => User, { nullable: true })
+    @ManyToOne(type => User, { eager: true }) //pode ser nulo pq iremos usar a mesma entidade para posts normais, então esse dado pode não ser passado
     @JoinColumn({ name: 'referredUserId' })
     referredUser: User;
 

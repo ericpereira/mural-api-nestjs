@@ -27,6 +27,14 @@ export class PostsResolver {
     return this.postsService.findAll(ctx, findAllPostsArgs);
   }
 
+  @Query(() => [Post], { name: 'search' })
+  @UseGuards(JwtAuthGuard)
+  search(
+    @Context() ctx,
+    @Args('findAllPostsArgs') findAllPostsArgs: FindAllPostsArgs) {
+    return this.postsService.search(ctx, findAllPostsArgs);
+  }
+
   @Mutation(() => Boolean, { name: 'updatePost' })
   @UseGuards(JwtAuthGuard)
   updatePost(
